@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+
+<odoo>
+	<record id="ctp_query_view_tree" model="ir.ui.view">
+		<field name="name">Type a Query Tree</field>
+		<field name="model">ctp_query</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name" string="Query"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="ctp_query_view_form" model="ir.ui.view">
+		<field name="name">Type a Query Form</field>
+		<field name="model">ctp_query</field>
+		<field name="arch" type="xml">
+			<form>
+				<header>
+					<button name="print_result" string="Print PDF" type="object" class="oe_highlight" invisible="raw_output in ['',[],False]"/>
+				</header>
+
+				<sheet>
+					<group string="Examples">
+						<label string="Examples :" for="tips"/>
+						<div class="o_row">
+							<field name="tips" widget="selection"/>
+							<button name="copy_query" type="object" class="oe_highlight" string="Copy" invisible="tips == False" />
+						</div>
+						<field name="tips_description" invisible="tips == False" />
+					</group>
+
+					<group string="Type a query">
+						<label string="SQL :" for="name"/>
+						<div class="o_row">
+							<field name="name" placeholder="SELECT * FROM res_partner" style="border-bottom: 1px solid #6B4A63;"/>
+						</div>
+					</group>
+
+					<group>
+						<button name="execute" type="object" string="Query" class="px-5 oe_highlight"/>
+					</group>
+
+					<group class="mt-3">
+						<label string=" " for="rowcount"/>
+						<div class="o_row">
+							<field name="rowcount" readonly="1" nolabel="1"/>
+						</div>
+					</group>
+
+					<group class="mt-3">
+						<field name="html" readonly="1" nolabel="1"/>
+					</group>
+
+					<group class="mt-3">
+						<field name="show_raw_output"/>
+						<field name="raw_output" invisible="show_raw_output == False" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record model='ir.actions.act_window' id='ctp_query_submenu_ctp_query_action'>
+		<field name="name">Query DB</field>
+		<field name="res_model">ctp_query</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<record id="tips_queries_view_tree" model="ir.ui.view">
+		<field name="name">Memorize Query Tree</field>
+		<field name="model">tipsqueries</field>
+		<field name="arch" type="xml">
+			<tree editable="bottom">
+				<field name="name" string="Query"/>
+				<field name="description" string="Description"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="tips_queries_view_search" model="ir.ui.view">
+		<field name="name">Search Query</field>
+		<field name="model">tipsqueries</field>
+		<field name="arch" type="xml">
+			<search string="Search">
+				<field name="name"/>
+				<field name="description"/>
+			</search>
+		</field>
+	</record>
+
+	<record model='ir.actions.act_window' id='ctp_query_submenu_tipsqueries_action'>
+		<field name="name">Examples</field>
+		<field name="res_model">tipsqueries</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_mode">tree</field>
+	</record>
+
+	<menuitem id="ctp_query_menu" name="Query DB" sequence="-1" groups="ctp_query.group_ctp_query" web_icon="ctp_query,static/description/icon.png"/>
+
+	<menuitem id="ctp_query_submenu_ctp_query" parent="ctp_query.ctp_query_menu" action="ctp_query.ctp_query_submenu_ctp_query_action" sequence="-1" groups="ctp_query.group_ctp_query"/>
+	<menuitem id="ctp_query_submenu_tipsqueries" parent="ctp_query.ctp_query_menu" action="ctp_query.ctp_query_submenu_tipsqueries_action" sequence="10" groups="ctp_query.group_ctp_query"/>
+</odoo>

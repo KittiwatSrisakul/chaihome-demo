@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='invoicing_settings']/setting[@id='total_amount_words']" position="after">
+                <setting>
+                    <field name="is_approve_credit_limit"/>
+                    <div class="content-group mt-2" invisible="not is_approve_credit_limit">
+                        <div class="row">
+                            <div class="col">
+                                <strong>Just Approve The Sale</strong>
+                                <p class="o_light_label">Once approved, the sales order can be confirmed.</p>
+                                <strong>Increase Credit Limit</strong>
+                                <p class="o_light_label">Once approved, the amount will be used to correct the credit limit.</p>
+                                <field name="approve_credit_select" widget="radio"/>
+<!--                                <label for="is_jus_approve_limit" string="Once approved, the sales order can be confirmed." class="o_light_label"/>-->
+<!--                                <p class="o_light_label">Once approved, the sales order can be confirmed.</p>-->
+                            </div>
+                        </div>
+<!--                        <div class="row">-->
+<!--                            <div class="col">-->
+<!--                                <field name="is_increase_approve_limit"/>-->
+<!--                                <label for="is_increase_approve_limit" string="Increase Credit Limit" class="o_light_label"/>-->
+<!--                                <p class="o_light_label">Once approved, the amount will be used to correct the credit limit.</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

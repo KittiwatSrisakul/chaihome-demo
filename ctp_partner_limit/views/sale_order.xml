@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_approvals" type="object"
+                        class="oe_stat_button" icon="fa-list"
+                        invisible="count_approve == 0">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="count_approve"/>
+                        </span>
+                        <span class="o_stat_text">Approvals</span>
+                    </div>
+                </button>
+
+            </xpath>
+            <xpath expr="//header/button[@name='action_cancel']" position="after">
+                <field name="is_credit_limit" invisible="1"/>
+                <button name="action_create_credit_limit_approve" string="Request Exceed Credit" type="object" invisible="is_credit_limit == False or approve_req_status in ['new', 'pending', 'approved']"/>
+            </xpath>
+            <xpath expr="//notebook/page[@name='other_information']" position="after">
+                <page string="Credit Limit" name="credit_limit">
+                    <group>
+                        <group>
+                            <field name="credit" class="oe_inline" readonly="1" force_save="1"/>
+                            <field name="credit_limit" class="oe_inline" readonly="1"/>
+                            <field name="approve_req_status" string="Approve Status" class="oe_inline" readonly="1"/>
+                            <field name="approve_request_id" string="Approve Request" class="oe_inline" readonly="1"/>
+                            <field name="use_partner_credit_limit" invisible="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+<!--            <xpath expr="//sheet/group[@name='sale_header']/group[@name='order_details']" position="after">-->
+<!--                <group string="Credit Limit">-->
+<!--                    <field name="credit" class="oe_inline" readonly="1" force_save="1"/>-->
+<!--                    <field name="credit_limit" class="oe_inline" readonly="1"/>-->
+<!--                    <field name="approve_req_status" string="Approve Status" class="oe_inline" readonly="1"/>-->
+<!--                    <field name="approve_request_id" string="Approve Request" class="oe_inline" readonly="1"/>-->
+<!--                    <div style="width: 150px;">-->
+<!--                        <button name="action_create_credit_limit_approve" string="Request Approve" style="width: 50px;" type="object" class="btn btn-outline-primary btn-sm"/>-->
+<!--                    </div>-->
+<!--                    <field name="use_partner_credit_limit" invisible="1"/>-->
+<!--                </group>-->
+<!--            </xpath>-->
+        </field>
+    </record>
+</odoo>

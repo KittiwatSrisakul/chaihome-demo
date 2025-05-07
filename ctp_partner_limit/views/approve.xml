@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="approval_category_view_form_inherit" model="ir.ui.view">
+        <field name="name">approval.category.view.form.inherit</field>
+        <field name="model">approval.category</field>
+        <field name="inherit_id" ref="approvals.approval_category_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group/field[@name='company_id']" position="after">
+                <field name="is_partner_limit" readonly="1" invisible="is_partner_limit == False"/>
+                <field name="is_partner_limit_not" readonly="1" invisible="is_partner_limit_not == False"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="approval_request_view_form_inherit" model="ir.ui.view">
+        <field name="name">approval.request.view.form.inherit</field>
+        <field name="model">approval.request</field>
+        <field name="inherit_id" ref="approvals.approval_request_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group/group[@name='request_main']/field[@name='partner_id']" position="after">
+                <field name="credit" invisible="is_partner_limit == False"/>
+                <field name="is_partner_limit" invisible="1"/>
+                <field name="is_partner_limit_not" invisible="1"/>
+            </xpath>
+            <xpath expr="//sheet/group/group[@name='request_details']/field[@name='reference']" position="after">
+                <field name="sale_order_id" string="Reference" readonly="1" invisible="sale_order_id == False"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
+

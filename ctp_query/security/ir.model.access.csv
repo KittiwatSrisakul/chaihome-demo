@@ -1,0 +1,4 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_ctp_query,ctp_query access,ctp_query.model_ctp_query,ctp_query.group_ctp_query,1,1,1,1
+access_pdforientation,pdforientation access,ctp_query.model_pdforientation,ctp_query.group_ctp_query,1,1,1,1
+access_tipsqueries,tipsqueries access,ctp_query.model_tipsqueries,ctp_query.group_ctp_query,1,1,1,1

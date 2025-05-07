@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_partner_property_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.property.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='credit_limits']/div[@class='o_row']" position="after">
+                <field name="is_approve_credit_limit"/>
+                <field name="is_jus_approve_limit"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,21 @@
+{
+    "name": "Type Tax Invoice",
+    "version": "17.0.1.0.1",
+    "summary": "",
+    "description": "Type tax in sale create invoice",
+    "author": "Cybernetics+",
+    "website": "https://www.cybernetics.plus",
+    "live_test_url": "https://www.cybernetics.plus",
+    "category": "Customizations",
+    "license": "Other proprietary",
+    "price": 999999999.99,
+    "currency": "EUR",
+    "installable": True,
+    "application": False,
+    "auto_install": False,
+    "depends": ["sale", "account", "base", "contacts"],
+    "data": [
+        "reports/account_report_abb.xml",
+        "views/res_partner_view.xml",
+    ],
+}

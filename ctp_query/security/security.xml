@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="group_ctp_query" model="res.groups">
+        <field name="name">Access ctp_query</field>
+    </record>
+
+    <record id="base.group_system" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('ctp_query.group_ctp_query'))]"/>
+    </record>
+
+    <record id="base.group_erp_manager" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('ctp_query.group_ctp_query'))]"/>
+    </record>
+
+</odoo>
